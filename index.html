@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HLS Stream Player</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <h1>UCT HLS Player</h1>
+            </div>
+            <span class="badge">Live Stream Ready</span>
+        </header>
+
+        <main class="player-wrapper">
+            <div class="url-input-container">
+                <div class="input-group">
+                    <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                    </svg>
+                    <input 
+                        type="text" 
+                        id="hlsUrl" 
+                        placeholder="Enter HLS stream URL (e.g., https://example.com/stream.m3u8)"
+                        autocomplete="off"
+                    >
+                    <button id="playBtn" class="play-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        Play
+                    </button>
+                </div>
+            </div>
+
+            <div class="video-container" id="videoContainer">
+                <video id="videoPlayer" controls playsinline></video>
+                <div class="video-overlay" id="videoOverlay">
+                    <div class="overlay-content">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                        </svg>
+                        <p>Enter a HLS URL and click Play</p>
+                    </div>
+                </div>
+                <div class="loading-spinner" id="loadingSpinner">
+                    <div class="spinner"></div>
+                    <p>Loading stream...</p>
+                </div>
+                <div class="live-badge" id="liveBadge">
+                    <span class="live-dot"></span>
+                    LIVE
+                </div>
+            </div>
+
+            <div class="status-bar" id="statusBar">
+                <div class="status-item">
+                    <span class="status-label">Status:</span>
+                    <span class="status-value" id="streamStatus">Idle</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Quality:</span>
+                    <span class="status-value" id="streamQuality">-</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Latency:</span>
+                    <span class="status-value" id="streamLatency">-</span>
+                </div>
+            </div>
+        </main>
+
+        <section class="sample-streams">
+            <h3>Sample Streams</h3>
+            <div class="stream-list">
+                <button class="stream-item" data-url="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8">
+                    <span class="stream-name">Big Buck Bunny</span>
+                    <span class="stream-type">VOD</span>
+                </button>
+                <button class="stream-item" data-url="https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8">
+                    <span class="stream-name">Akamai Test</span>
+                    <span class="stream-type">LIVE</span>
+                </button>
+                <button class="stream-item" data-url="https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8">
+                    <span class="stream-name">Apple Advanced</span>
+                    <span class="stream-type">VOD</span>
+                </button>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Supports HTTP & HTTPS HLS streams • Powered by hls.js</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="player.js"></script>
+</body>
+</html>
